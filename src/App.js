@@ -4,6 +4,10 @@ import Container from './Container.js'
 import Info from './Info.js'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
+import Input from '@material-ui/core/Input';
+import NotFound from './NotFound';
+
+
 const App=()=> {
   const [searchName,setSearchName]=useState('');
   const [books, setBooks]=useState([]);
@@ -31,13 +35,18 @@ const App=()=> {
       <Router>
         <Switch>
           <Route exact path="/">
-          <input type="text" placeholder="search books" onChange={(e)=>setSearchName(e.target.value)}/>  
+          <Input placeholder="search book" defaultValue="" inputProps={{ 'aria-label': 'description' }} onChange={(e)=>setSearchName(e.target.value)} />
+          {/* <input type="text" placeholder="search books" onChange={(e)=>setSearchName(e.target.value)}/>   */}
+
 
             <Container books={books} loading={loading} searchName={searchName}/> 
           </Route>
           <Route exact path="/:id"> 
             <Info books={books}/>
           </Route>
+          <Route component={NotFound} />
+               
+          
         </Switch>
       </Router>
     </div>
