@@ -1,5 +1,25 @@
 .App {
   text-align: center;
-
+ 
+}
+span{
+  color:rgb(31, 15, 99);
+  
+}
+.paperInfo{
+  flex-direction: row;
+ padding: 30px;
+ align-items:space-around;
 }
 
+.paperInfo img{
+  margin: auto;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .paperInfo{
+    flex-direction: column;
+  }
+}

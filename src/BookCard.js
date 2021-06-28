@@ -1,11 +1,15 @@
 import React from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
+
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import defaultCover from './book.jpg';
+import './App.css';
+import {Link, useParams} from 'react-router-dom'
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles({
   root: {
@@ -22,17 +26,31 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  underline: {
+    "&&&:before": {
+      borderBottom: "none"
+    },
+    "&&:after": {
+      borderBottom: "none"
+    }
+  }
 });
 
 export default function BookCard({book}) {
   const classes = useStyles();
   
-const authors = book.volumeInfo.authors || "Authors not available";
-const title = book.volumeInfo.title || "Title not available";
-const cover = (book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail) || defaultCover;
+  let authors = book.volumeInfo.authors || "Authors not available";
+  if (authors.length > 30) {
+    authors = authors.substring(0, 29) + "...";
+  }
+  let title = book.volumeInfo.title || "Title not available";
+  if (title.length > 50) {
+    title = title.substring(0, 49) + "...";
+  }
+  const cover = (book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail) || defaultCover;
 
   return (
-    <Card className={classes.root} variant="outlined">
+    <>
       <CardContent style={{display:'flex', flexDirection:'row'}}>
 
         <img height='150px' src={cover}/>
@@ -48,9 +66,9 @@ const cover = (book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnai
         </div>
         
       </CardContent>
-            <CardActions>
-               <Button size="small" color="primary">Learn More</Button>
-            </CardActions>
-    </Card>
+      <Link to={`/${book.id}`} style={{ textDecoration: 'none' }} >
+               <Button size="small" color="primary" startIcon={<SearchIcon/>}>Learn More</Button>
+      </Link>
+    </>
   );
 }

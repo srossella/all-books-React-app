@@ -4,17 +4,20 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
+import './App.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
+    
+    margin:20
   },
 }));
 
@@ -26,10 +29,10 @@ export default function ButtonAppBar() {
       <AppBar position="static">
         <Toolbar>
           
-          <Typography variant="h6" className={classes.title}>
-            ALLBOOKS
+          <Typography variant="h2" component="h1" className={classes.title}>
+            <span>ALL</span>BOOKS
           </Typography>
-          <Button color="inherit">About</Button>
+         
         </Toolbar>
       </AppBar>
     </div>
