@@ -5,20 +5,16 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import './App.css';
-
+import logo from './logo.png';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-    
-    margin:20
-  },
+ 
+  
 }));
 
 export default function ButtonAppBar() {
@@ -26,13 +22,16 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           
-          <Typography variant="h2" component="h1" className={classes.title}>
-            <span>ALL</span>BOOKS
-          </Typography>
-         
+          
+          <img height='30px' src={logo}/>
+          <div className="socialIcons">
+             <GitHubIcon/>
+             <InstagramIcon/>
+             <EmailOutlinedIcon/>
+          </div>
         </Toolbar>
       </AppBar>
     </div>

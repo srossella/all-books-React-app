@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import Scroll from './Scroll.js'
 import BookContainer from './BookContainer.js'
 import Info from './Info.js'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
@@ -13,17 +13,34 @@ import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
 
 import Box from '@material-ui/core/Box';
-import { flexbox } from '@material-ui/system';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import Masonry from 'react-masonry-css';
-import { purple, green } from '@material-ui/core/colors';
+import { purple, green, white } from '@material-ui/core/colors';
 import './App.css';
 
-const useStyles = makeStyles((theme) => ({
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#a45477',
+      main: '#73274b',
+      dark: '#440023',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ffb3c7',
+      main: '#ce8396',
+      dark: '#9b5568',
+      contrastText: '#000',
+    },
+  },
+});
+
+
+const useStyles = makeStyles((theme) => {
+ return {
   grow: {
     flexGrow: 1,
-  },
+  }, 
   inputRoot: {
     color: 'inherit',
   },
@@ -32,28 +49,10 @@ const useStyles = makeStyles((theme) => ({
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
-    width: '70%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '70%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
+    width: '100%',
   },
   searchIcon: {
-    padding: theme.spacing(0, 2),
+    paddingLeft: 20,
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -61,22 +60,19 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-}));
-
-const theme = createMuiTheme(
-  {
-    palette:{
-      primary:{
-        main: purple[500]
-      },
+  search: {
+    position: 'relative',
+    borderRadius: 50,
+    backgroundColor: 'red',
+    '&:hover': {
+      backgroundColor: 'yellow',
     },
-  })
-const breakpointColumnsObj = {
-  default: 2,
-  1100: 2,
-  700: 2,
-  500: 1
-};
+    margin: 'auto',
+    width: '300px',
+    marginTop: 40,
+  },
+}});
+
 
 
 const App=()=> {
@@ -107,36 +103,28 @@ const App=()=> {
       <Router>
         <Switch>
           <Route exact path="/">
-          <div className={classes.searchIcon}>
-              <SearchIcon />
-          </div>
-          <div className={classes.grow}>
-            <div className={classes.search}>
-              <Input 
-                placeholder="Search book" 
-                defaultValue="" 
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search book' }} 
-                onChange={(e)=>setSearchName(e.target.value)} 
-              />
-            </div>
-          </div>
-          <Box maxWidth="1000px" margin="auto" >
          
-            <Grid container spacing="2" display="flex" flexDirection="row" flexWrap="wrap">
            
-                 <BookContainer books={books} loading={loading} searchName={searchName}/> 
-              
-            </Grid>
+            <div className="inputBar">
+                <input 
+                  type="search"
+                  placeholder="Search book" 
+                  onChange={(e)=>setSearchName(e.target.value)} 
+                />
+            </div>
             
-          </Box>
+              <Box maxWidth="1000px"  margin="auto" marginTop="150px" marginBottom="20px" top="150px">
+                <Grid container spacing="3" display="flex" flexDirection="row" flexWrap="wrap" >
+                    <BookContainer books={books} loading={loading} searchName={searchName}/> 
+                </Grid>
+              </Box>
+           
 
           </Route>
           <Route exact path="/:id"> 
-            <Info books={books}/>
+            <Box marginTop="100px">
+              <Info books={books}/>
+            </Box>
           </Route>
           
                

@@ -29,10 +29,15 @@ const Info= ({books})=> {
 
   if(book){
   const cover = (book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail) || defaultCover;
-
+  let authors=Object.values(book.volumeInfo.authors || {0:"Authors not available"});
   return (
     <>
-    
+       <Link to="/" className='button' style={{ textDecoration: 'none' }}>
+        <Button variant="contained" color="textPrimary" style={{ marginTop: '20px' }}>
+          Back to books
+        </Button>
+       </Link>
+
       <Paper className="paperInfo" style={{display:'flex',  margin:'auto', marginTop:'40px', maxWidth:'800px'}}>
         <img height='300px' src={cover}/>
         <div  style={{textAlign:'left', margin:'10px',marginLeft:'20px', minWidth:'300px' }}>
@@ -40,9 +45,17 @@ const Info= ({books})=> {
                   {book.volumeInfo.title || "No title available"} 
                 </Typography>
                 <br/>
-                <Typography variant="h6" component="h2" >
-                  {book.volumeInfo.authors || "No authors available"}
-                </Typography>
+
+                {
+                  authors.map((author)=>{
+                    return (
+                    <Typography variant="subtitle1" component="h2" >
+                      {author}
+                    </Typography>
+                    )
+                  }) 
+                }
+                
                 <Typography variant="h7" component="h3" >
                   {book.volumeInfo.publishedDate || "No date available"}
                 </Typography>
@@ -54,11 +67,7 @@ const Info= ({books})=> {
           
      </Paper>
     
-     <Link to="/" className='button' style={{ textDecoration: 'none' }}>
-     <Button variant="contained" color="textPrimary" style={{ marginTop: '20px' }}>
-       Back to books
-     </Button>
-   </Link>
+  
 
    </>
 

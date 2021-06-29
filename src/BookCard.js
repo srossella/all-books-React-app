@@ -39,10 +39,16 @@ const useStyles = makeStyles({
 export default function BookCard({book}) {
   const classes = useStyles();
   
-  let authors = book.volumeInfo.authors || "Authors not available";
-  if (authors.length > 30) {
-    authors = authors.substring(0, 29) + "...";
-  }
+  let authors=Object.values(book.volumeInfo.authors || {0:"Authors not available"}); 
+
+ 
+  // if ( Array.isArray(authors)){
+  //   for (let i = 0; i < authors.length; i++) {
+  //       if (authors[i].length > 20) {
+  //         authors[i] = authors[i].substring(0,19) + "...";
+  //       }
+  //   }
+  // }
   let title = book.volumeInfo.title || "Title not available";
   if (title.length > 50) {
     title = title.substring(0, 49) + "...";
@@ -59,10 +65,18 @@ export default function BookCard({book}) {
             <Typography variant="h6" component="h2" >
               {title}
             </Typography>
-            <Typography variant="subtitle1" component="h2" color="textSecondary" gutterBottom>
+            {/* <Typography variant="h5" component="h2" >
               {authors}
-            </Typography>
-          
+            </Typography> */}
+            {
+                  authors.map((author)=>{
+                    return (
+                    <Typography variant="h5" component="h2" >
+                      {author}
+                    </Typography>
+                    )
+                  }) 
+            }
         </div>
         
       </CardContent>

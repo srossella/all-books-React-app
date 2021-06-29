@@ -1,6 +1,6 @@
 .App {
   text-align: center;
- 
+ margin: 20px;
 }
 span{
   color:rgb(31, 15, 99);
@@ -16,6 +16,70 @@ span{
   margin: auto;
   margin-top: 0;
   margin-bottom: 20px;
+}
+
+.statusInfo{
+  margin: auto;
+  
+}
+.inputBar{
+  display: flex;
+  justify-content: center;
+
+}
+input {
+  outline: none;
+  position: fixed;
+
+  margin-top: 80px;
+}
+input[type=search] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+  font-family: inherit;
+  font-size: 100%;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+  display: none; 
+}
+
+
+input[type=search] {
+  background: #fffbfb96 url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+  border: solid 1px #ccc;
+  padding: 9px 10px 9px 42px;
+  width: 100px;
+  
+  -webkit-border-radius: 10em;
+  -moz-border-radius: 10em;
+  border-radius: 10em;
+  
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+}
+input[type=search]:focus {
+  width: 200px;
+  background-color: #fff;
+  border-color: #9b5568;
+  
+  -webkit-box-shadow: 0 0 5px #ffb3c7;
+  -moz-box-shadow: 0 0 5px #ffb3c7;
+  box-shadow: 0 0 5px #ffb3c7;
+}
+
+
+input:-moz-placeholder {
+  color: #999;
+}
+input::-webkit-input-placeholder {
+  color: #999;
+}
+
+
+.socialIcons{
+
 }
 
 @media screen and (max-width: 600px) {
