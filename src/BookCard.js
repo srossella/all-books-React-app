@@ -2,6 +2,7 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
 
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
@@ -40,7 +41,9 @@ export default function BookCard({book}) {
   const classes = useStyles();
   
   let authors=Object.values(book.volumeInfo.authors || {0:"Authors not available"}); 
-
+if (authors.length>2){
+  authors=authors.slice(0, 2)
+}
  
   // if ( Array.isArray(authors)){
   //   for (let i = 0; i < authors.length; i++) {
@@ -56,7 +59,7 @@ export default function BookCard({book}) {
   const cover = (book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail) || defaultCover;
 
   return (
-    <>
+    <div style={{display: 'flex', flexDirection:'column', justifyContent: 'flex-end' }}>
       <CardContent style={{display:'flex', flexDirection:'row'}}>
 
         <img height='150px' src={cover}/>
@@ -65,13 +68,11 @@ export default function BookCard({book}) {
             <Typography variant="h6" component="h2" >
               {title}
             </Typography>
-            {/* <Typography variant="h5" component="h2" >
-              {authors}
-            </Typography> */}
+          
             {
                   authors.map((author)=>{
                     return (
-                    <Typography variant="h5" component="h2" >
+                    <Typography variant="subtitle1" component="h2" >
                       {author}
                     </Typography>
                     )
@@ -80,9 +81,11 @@ export default function BookCard({book}) {
         </div>
         
       </CardContent>
-      <Link to={`/${book.id}`} style={{ textDecoration: 'none' }} >
-               <Button size="small" color="primary" startIcon={<SearchIcon/>}>Learn More</Button>
+      <Link to={`/${book.id}`} style={{ textDecoration: 'none', marginTop:'10px' }} >
+         
+          <Button size="small" color="primary" startIcon={<SearchIcon/>}>Learn More</Button>
+          
       </Link>
-    </>
+    </div>
   );
 }

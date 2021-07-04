@@ -11,7 +11,7 @@ import Container from '@material-ui/core/Container';
 import AppBar from './AppBar'
 import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
-
+import bookBackground from './book_background1.jpg';
 import Box from '@material-ui/core/Box';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -27,7 +27,7 @@ const theme = createMuiTheme({
       contrastText: '#fff',
     },
     secondary: {
-      light: '#ffb3c7',
+      light: '#DFCDD7',
       main: '#ce8396',
       dark: '#9b5568',
       contrastText: '#000',
@@ -97,28 +97,31 @@ const App=()=> {
   
   return (
     <ThemeProvider theme={theme}>
-    <div className="App">
-      
+       
+    <div className="App" >
+     
       <AppBar/>
+      
       <Router>
         <Switch>
           <Route exact path="/">
          
-           
-            <div className="inputBar">
+            
+            <div className="inputBar" >
+                 <img className="imgBack" src={bookBackground}/>
                 <input 
                   type="search"
                   placeholder="Search book" 
                   onChange={(e)=>setSearchName(e.target.value)} 
                 />
             </div>
-            
-              <Box maxWidth="1000px"  margin="auto" marginTop="150px" marginBottom="20px" top="150px">
+            <div  style={{margin:'20px'}}>
+              <Box maxWidth="1500px"   >
                 <Grid container spacing="3" display="flex" flexDirection="row" flexWrap="wrap" >
-                    <BookContainer books={books} loading={loading} searchName={searchName}/> 
+                    <BookContainer books={books} loading={loading} searchName={searchName} /> 
                 </Grid>
               </Box>
-           
+              </div>
 
           </Route>
           <Route exact path="/:id"> 

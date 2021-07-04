@@ -11,18 +11,17 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
 
-// const classes = makeStyles({
-//   root: {
-    
-//   },
-//   title: {
-   
-//   },
- 
-// });
+      const useStyles = makeStyles((theme) => ({
+        paper: {
+          color: theme.palette.text.primary,
+          background: theme.palette.secondary.light,
+        },
+      }));
 
 
 const Info= ({books})=> {
+  const classes = useStyles();
+  
   const {id}= useParams();
   console.log(id, books)
   const book= books.find(book => book.id === id)
@@ -38,7 +37,7 @@ const Info= ({books})=> {
         </Button>
        </Link>
 
-      <Paper className="paperInfo" style={{display:'flex',  margin:'auto', marginTop:'40px', maxWidth:'800px'}}>
+      <Paper className={classes.paper} style={{display:'flex',  margin:'auto', marginTop:'40px', maxWidth:'800px'}}>
         <img height='300px' src={cover}/>
         <div  style={{textAlign:'left', margin:'10px',marginLeft:'20px', minWidth:'300px' }}>
                 <Typography variant="h5" component="h2" >

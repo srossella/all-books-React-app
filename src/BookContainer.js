@@ -17,9 +17,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.primary,
-    height:'90%',
-    background: 'grey',
-    
+    minHeight:'250px',
+    height:'auto',
+    background: theme.palette.secondary.light,
+   alignItems: 'stretch'
   },
   text:{
     margin:'auto',
@@ -58,9 +59,9 @@ const BookContainer= ({books, loading, searchName})=> {
             books.map((book)=>{
                 return (
                  
-                    <Grid  item xs={12}  sm={6} >
+                    <Grid  item xs={12}  sm={6} lg={4}>
                     
-                      <Paper className={classes.paper} >
+                      <Paper className={classes.paper}>
                         <BookCard book={book} key={book.id}/>
                       </Paper>
                 
