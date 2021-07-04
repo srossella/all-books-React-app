@@ -5,16 +5,20 @@ import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import defaultCover from './book.jpg';
+import defaultCover from './img/book.jpg';
 import CardContent from '@material-ui/core/CardContent';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-
-
+import HomeIcon from '@material-ui/icons/Home';
       const useStyles = makeStyles((theme) => ({
         paper: {
           color: theme.palette.text.primary,
           background: theme.palette.secondary.light,
+          padding: '20px',
+         display:'flex',
+         flexWrap:'wrap', 
+         flexDirection:'row'
+        
         },
       }));
 
@@ -31,15 +35,11 @@ const Info= ({books})=> {
   let authors=Object.values(book.volumeInfo.authors || {0:"Authors not available"});
   return (
     <>
-       <Link to="/" className='button' style={{ textDecoration: 'none' }}>
-        <Button variant="contained" color="textPrimary" style={{ marginTop: '20px' }}>
-          Back to books
-        </Button>
-       </Link>
-
-      <Paper className={classes.paper} style={{display:'flex',  margin:'auto', marginTop:'40px', maxWidth:'800px'}}>
+      
+<div style={{margin:'20px', marginTop:'40px'}}>
+      <Paper className={classes.paper} style={{display:'flex',  margin:'auto',maxWidth:'800px'}}>
         <img height='300px' src={cover}/>
-        <div  style={{textAlign:'left', margin:'10px',marginLeft:'20px', minWidth:'300px' }}>
+        <div  style={{textAlign:'left', margin:'10px'}}>
                 <Typography variant="h5" component="h2" >
                   {book.volumeInfo.title || "No title available"} 
                 </Typography>
@@ -65,8 +65,14 @@ const Info= ({books})=> {
         </div>
           
      </Paper>
-    
-  
+     </div>
+     <Link to="/" className='button' style={{ textDecoration: 'none'}}>
+        <Button variant="contained" color="primary" startIcon={<HomeIcon />} style={{ marginTop: '20px', 
+        position:'fixed', bottom:'50px', display:'flex'
+       }}>
+          Back to books
+        </Button>
+       </Link>
 
    </>
 

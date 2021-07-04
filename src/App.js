@@ -11,7 +11,7 @@ import Container from '@material-ui/core/Container';
 import AppBar from './AppBar'
 import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
-import bookBackground from './book_background1.jpg';
+import bookBackground from './img/book_background.jpg';
 import Box from '@material-ui/core/Box';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -21,14 +21,14 @@ import './App.css';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: '#a45477',
-      main: '#73274b',
+      light: '#b6465f',
+      main: '#890620',
       dark: '#440023',
       contrastText: '#fff',
     },
     secondary: {
-      light: '#DFCDD7',
-      main: '#ce8396',
+      light: '#ebd4cb',
+      main: '#da9f93',
       dark: '#9b5568',
       contrastText: '#000',
     },
@@ -98,7 +98,8 @@ const App=()=> {
   return (
     <ThemeProvider theme={theme}>
        
-    <div className="App" >
+    <div className="App" style={{minHeight:'100vh',
+    background: 'linear-gradient(45deg, #b6465f 30%, #da9f93 90%)', zIndex:'-1'}}>
      
       <AppBar/>
       
@@ -121,11 +122,11 @@ const App=()=> {
                     <BookContainer books={books} loading={loading} searchName={searchName} /> 
                 </Grid>
               </Box>
-              </div>
+            </div>
 
           </Route>
           <Route exact path="/:id"> 
-            <Box marginTop="100px">
+            <Box marginTop="60px">
               <Info books={books}/>
             </Box>
           </Route>

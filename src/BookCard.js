@@ -7,7 +7,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import defaultCover from './book.jpg';
+import defaultCover from './img/book.jpg';
 import './App.css';
 import {Link, useParams} from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search';
@@ -44,6 +44,11 @@ export default function BookCard({book}) {
 if (authors.length>2){
   authors=authors.slice(0, 2)
 }
+for (let i = 0; i < authors.length; i++) {
+        if (authors[i].length > 30) {
+          authors[i] = authors[i].substring(0,29) + "...";
+        }
+    }
  
   // if ( Array.isArray(authors)){
   //   for (let i = 0; i < authors.length; i++) {
@@ -53,8 +58,8 @@ if (authors.length>2){
   //   }
   // }
   let title = book.volumeInfo.title || "Title not available";
-  if (title.length > 50) {
-    title = title.substring(0, 49) + "...";
+  if (title.length > 60) {
+    title = title.substring(0, 59) + "...";
   }
   const cover = (book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail) || defaultCover;
 
@@ -64,15 +69,15 @@ if (authors.length>2){
 
         <img height='150px' src={cover}/>
         
-        <div style={{textAlign:'left', margin:'10px', }}>
-            <Typography variant="h6" component="h2" >
+        <div style={{textAlign:'left', margin:'10px',marginBottom:"0px" }}>
+            <Typography variant="subtitle1" component="h2" paragraph="bool" fontWeight="fontWeightBold">
               {title}
             </Typography>
           
             {
                   authors.map((author)=>{
                     return (
-                    <Typography variant="subtitle1" component="h2" >
+                    <Typography variant="subtitle2" component="h2" color="textSecondary">
                       {author}
                     </Typography>
                     )
@@ -81,9 +86,9 @@ if (authors.length>2){
         </div>
         
       </CardContent>
-      <Link to={`/${book.id}`} style={{ textDecoration: 'none', marginTop:'10px' }} >
+      <Link to={`/${book.id}`} style={{ textDecoration: 'none' }} >
          
-          <Button size="small" color="primary" startIcon={<SearchIcon/>}>Learn More</Button>
+          <Button variant="outlined" size="small" color="primary" startIcon={<SearchIcon/>}>Learn More</Button>
           
       </Link>
     </div>
