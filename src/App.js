@@ -1,14 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import Scroll from './Scroll.js'
+
 import BookContainer from './BookContainer.js'
 import Info from './Info.js'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
-import NotFound from './NotFound';
+
+
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import AppBar from './AppBar'
+import Footer from './Footer.js'
 import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
 import bookBackground from './img/book_background.jpg';
@@ -17,6 +19,8 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { purple, green, white } from '@material-ui/core/colors';
 import './App.css';
+
+
 
 const theme = createMuiTheme({
   palette: {
@@ -36,50 +40,13 @@ const theme = createMuiTheme({
 });
 
 
-const useStyles = makeStyles((theme) => {
- return {
-  grow: {
-    flexGrow: 1,
-  }, 
-  inputRoot: {
-    color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-  },
-  searchIcon: {
-    paddingLeft: 20,
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  search: {
-    position: 'relative',
-    borderRadius: 50,
-    backgroundColor: 'red',
-    '&:hover': {
-      backgroundColor: 'yellow',
-    },
-    margin: 'auto',
-    width: '300px',
-    marginTop: 40,
-  },
-}});
-
 
 
 const App=()=> {
   const [searchName,setSearchName]=useState('');
   const [books, setBooks]=useState([]);
   const [loading, setLoading]=useState(false);
-  const classes = useStyles();
+
   const { REACT_APP_APIKEY } = process.env;
 
   useEffect(()=>{
@@ -97,16 +64,18 @@ const App=()=> {
   
   return (
     <ThemeProvider theme={theme}>
-       
-    <div className="App" style={{minHeight:'100vh',
-    background: 'linear-gradient(45deg, #b6465f 30%, #da9f93 90%)', zIndex:'-1'}}>
+   
+      <div className="App" style={{minHeight:'100vh', overflow:'auto',
+            background: 'linear-gradient(45deg, #b6465f 30%, #da9f93 90%)',
+            zIndex:'-1'}}
+      >
      
       <AppBar/>
       
       <Router>
         <Switch>
           <Route exact path="/">
-         
+
             
             <div className="inputBar" >
                  <img className="imgBack" src={bookBackground}/>
@@ -116,26 +85,30 @@ const App=()=> {
                   onChange={(e)=>setSearchName(e.target.value)} 
                 />
             </div>
-            <div  style={{margin:'20px'}}>
-              <Box maxWidth="1500px"   >
-                <Grid container spacing="3" display="flex" flexDirection="row" flexWrap="wrap" >
+
+            <div  style={{margin:'20px',marginBottom:'50px'}}>
+                <Grid container spacing="3" display="flex"  flexWrap="wrap" >
                     <BookContainer books={books} loading={loading} searchName={searchName} /> 
                 </Grid>
-              </Box>
             </div>
+        
 
           </Route>
           <Route exact path="/:id"> 
-            <Box marginTop="60px">
+         
               <Info books={books}/>
-            </Box>
+            
           </Route>
           
                
           
         </Switch>
       </Router>
-    </div>
+
+      
+      <Footer/>
+      </div>
+  
     </ThemeProvider>
   );
 }

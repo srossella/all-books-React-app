@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.primary,
     minHeight:'200px',
-    height:'auto',
+    height:'90%',
     background: theme.palette.secondary.light,
    alignItems: 'stretch'
   },
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     height:'100%',
     marginTop: '30px',
-    color:  theme.palette.text.secondary,
+    color:  '#fff',
   },
   
   

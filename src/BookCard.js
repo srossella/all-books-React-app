@@ -11,7 +11,7 @@ import defaultCover from './img/book.jpg';
 import './App.css';
 import {Link, useParams} from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search';
-
+import Box from '@material-ui/core/Box';
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -64,21 +64,26 @@ for (let i = 0; i < authors.length; i++) {
   const cover = (book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail) || defaultCover;
 
   return (
-    <div style={{display: 'flex', flexDirection:'column', justifyContent: 'flex-end' }}>
-      <CardContent style={{display:'flex', flexDirection:'row'}}>
+    <div style={{display: 'flex', flexDirection:'column', justifyContent: 'space-between' }}>
+      <CardContent style={{display:'flex', flexDirection:'row', marginBottom:'0px'}}>
 
-        <img height='150px' src={cover}/>
+        <img className="cover-img"  src={cover} style={{
+        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}/>
         
-        <div style={{textAlign:'left', margin:'10px',marginBottom:"0px" }}>
-            <Typography variant="subtitle1" component="h2" paragraph="bool" fontWeight="fontWeightBold">
+        <div style={{textAlign:'left', marginLeft:'10px',marginBottom:"0px" }}>
+            <Typography variant="subtitle1" component="h2" paragraph="bool" >
+            <Box fontWeight="fontWeightMedium" m={1} style={{marginTop:'0'}}>
               {title}
+            </Box>
             </Typography>
           
             {
                   authors.map((author)=>{
                     return (
                     <Typography variant="subtitle2" component="h2" color="textSecondary">
+                       <Box fontWeight="fontWeightRegular" m={1}>
                       {author}
+                      </Box>
                     </Typography>
                     )
                   }) 
@@ -86,9 +91,11 @@ for (let i = 0; i < authors.length; i++) {
         </div>
         
       </CardContent>
-      <Link to={`/${book.id}`} style={{ textDecoration: 'none' }} >
+      <Link to={`/${book.id}`} style={{ textDecoration: 'none'}} >
          
-          <Button variant="outlined" size="small" color="primary" startIcon={<SearchIcon/>}>Learn More</Button>
+          <Button variant="contained" size="small" color="primary" startIcon={<SearchIcon/>}>
+            Learn More
+          </Button>
           
       </Link>
     </div>

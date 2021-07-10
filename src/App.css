@@ -1,11 +1,5 @@
 
 
-.App {
-  text-align: center;
- margin: 0px
-
-
-}
 
 .paperInfo{
   flex-direction: row;
@@ -95,7 +89,9 @@ input::-webkit-input-placeholder {
   color:rgb(131, 84, 84, 0.781);
 }
 
-
+.cover-img{
+  height: 170px
+}
 
 @media screen and (max-width: 900px) and (min-width: 600px){
  
@@ -106,5 +102,8 @@ input::-webkit-input-placeholder {
 @media screen and (max-width: 600px) {
   .paperInfo{
     flex-direction: column;
+  }
+  .cover-img{
+    height: 120px
   }
 }
