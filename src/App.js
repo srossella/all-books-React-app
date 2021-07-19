@@ -1,26 +1,13 @@
 import React, {useState, useEffect} from 'react';
-
 import BookContainer from './BookContainer.js'
 import Info from './Info.js'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import TextField from '@material-ui/core/TextField';
-import Input from '@material-ui/core/Input';
-
-
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import AppBar from './AppBar'
+import Appbar from './Appbar'
 import Footer from './Footer.js'
 import Grid from '@material-ui/core/Grid';
-import SearchIcon from '@material-ui/icons/Search';
 import bookBackground from './img/book_background.jpg';
-import Box from '@material-ui/core/Box';
-import { fade, makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { purple, green, white } from '@material-ui/core/colors';
 import './App.css';
-
-
 
 const theme = createMuiTheme({
   palette: {
@@ -39,74 +26,52 @@ const theme = createMuiTheme({
   },
 });
 
-
-
-
-const App=()=> {
+const App = () => {
   const [searchName,setSearchName]=useState('');
   const [books, setBooks]=useState([]);
   const [loading, setLoading]=useState(false);
-
   const { REACT_APP_APIKEY } = process.env;
 
   useEffect(()=>{
-    
     if(searchName){
       setLoading(true);
       fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchName}&key=${REACT_APP_APIKEY}`)
       .then(response=>response.json())
       .then(users=>{console.log(users); setBooks(users.items.slice(0,10)); setLoading(false)})
       .catch(error=>{setBooks([]); setLoading(false); console.error(error)})
-      
     }
   }, [searchName])
 
-  
   return (
     <ThemeProvider theme={theme}>
-   
-      <div className="App" style={{minHeight:'100vh', overflow:'auto',
-            background: 'linear-gradient(45deg, #b6465f 30%, #da9f93 90%)',
-            zIndex:'-1'}}
-      >
-     
-      <AppBar/>
-      
-      <Router>
-        <Switch>
-          <Route exact path="/">
-
-            
-            <div className="inputBar" >
-                 <img className="imgBack" src={bookBackground}/>
-                <input 
-                  type="search"
-                  placeholder="Search book" 
-                  onChange={(e)=>setSearchName(e.target.value)} 
-                />
-            </div>
-
-            <div  style={{margin:'20px',marginBottom:'50px'}}>
-                <Grid container spacing="3" display="flex"  flexWrap="wrap" >
-                    <BookContainer books={books} loading={loading} searchName={searchName} /> 
-                </Grid>
-            </div>
-        
-
-          </Route>
-          <Route exact path="/:id"> 
-         
-              <Info books={books}/>
-            
-          </Route>
-          
-               
-          
-        </Switch>
-      </Router>
-
-      
-      <Footer/>
+        <div className="App" style={{minHeight:'100vh', overflow:'auto',
+              background: 'linear-gradient(45deg, #b6465f 30%, #da9f93 90%)',
+              zIndex:'-1'}}
+        >
+        <Appbar/>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <div className="inputBar" >
+                  <img className="bookBackground" src={bookBackground}/>
+                  <input 
+                    type="search"
+                    placeholder="Search book" 
+                    onChange={(e)=>setSearchName(e.target.value)} 
+                  />
+              </div>
+              <div style={{margin:'20px',marginBottom:'50px'}}>
+                  <Grid container spacing="3" display="flex"  flexWrap="wrap" >
+                      <BookContainer books={books} loading={loading} searchName={searchName} /> 
+                  </Grid>
+              </div>
+            </Route>
+            <Route exact path="/:id"> 
+                <Info books={books}/>
+            </Route>
+          </Switch>
+        </Router>
+        <Footer/>
       </div>
   
     </ThemeProvider>
