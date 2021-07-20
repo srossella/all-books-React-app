@@ -1,72 +1,145 @@
-Work in pogress. Project in development!
+[![Contributors][contributors-shield]][contributors-url]
+[![Issues][issues-shield]][issues-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![MIT License][license-shield]][license-url]
 
-# Getting Started with Create React App
+<br />
+<p align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <h1 align="center">All Books</h1>
 
-## Available Scripts
+  <h3 align="center">
+    Browse among t.
+  </h3>
+</p>
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<details open="open">
+  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## About The Project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Product Name Screen Shot](build/img/Screenshot.PNG)
 
-### `npm run build`
+This is a simple website that displays data about the air quality in a specific city or location. It fetches data from [AQICN](aqicn.org) through their [API](https://aqicn.org/api/).
+Data can be retrieved through geolocation or manual input of a city name. When geolocation is used, data of the closest station are shown. 
+A map made with [Leaflet](https://leafletjs.com/) is also displayed with a marker placed in the station location. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This project is deployed and accessible at [air-quality-now-rs.netlify.app](https://air-quality-now-rs.netlify.app/). 
+If you prefer to run a local copy please follow the steps below.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Built With
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* [Leaflet](https://leafletjs.com/)
+* [Axios](https://github.com/axios/axios)
+* [Lodash](https://lodash.com/)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Getting Started
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Netlify functions have been used in this project for the deployment on Netlify servers, as this permits to hide the API keys easily and safely. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Therefore the `build` version uses netlify functions saved in the netlify folder. To run a local copy in your computer you can follow the steps below that don't involve the use of netlify functions but it only use the `index-dev.js` file and `.env` file.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### Prerequisites
+Install the latest version of `npm`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  ```sh
+  npm install npm@latest -g
+  ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Installation
 
-### Code Splitting
+1. Clone the repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   ```sh
+   git clone https://github.com/srossella/air-quality.git
+   ```
 
-### Analyzing the Bundle Size
+2. Install NPM packages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   ```sh
+   npm install
+   ```
 
-### Making a Progressive Web App
+3. Get a free API key at [Air Quality Open Data Platform](https://aqicn.org/data-platform/token/#/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+4. Create a .env file in the root folder with just one line:
 
-### Advanced Configuration
+   ```sh
+   API_SECRET = 'your API key here'
+   ```
+5. Run development version 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+   ```sh
+   npm run dev
+   ```
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Usage
 
-### `npm run build` fails to minify
+Search a specific location through the input box or through geolocation. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Data displayed, when available, include:
+
+* Air Quality Index 
+* Comment on the level of the AQI like good, moderate, unhealthy, hazardous etc. taken from [AQICN](aqicn.org). 
+* PM10
+* PM2.5
+* NO2
+* O3
+
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact
+
+Rossella Salaro - rossella.salaro@gmail.com
+
+Project Link: [Air Quality](https://github.com/srossella/air-quality)
+
+## Acknowledgements
+
+* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+* [Air Pollution: Real-time Air Quality Index (AQI)](https://aqicn.org/)
+* [Netlify](https://netlify.com)
+
+[contributors-shield]: https://img.shields.io/github/contributors/srossella/air-quality?style=for-the-badge
+[contributors-url]: https://github.com/srossella/air-quality/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/srossella/air-quality?style=for-the-badge
+[forks-url]: https://github.com/srossella/air-quality/network/members
+[stars-shield]: https://img.shields.io/github/stars/srossella/air-quality?style=for-the-badge
+[stars-url]: https://github.com/srossella/air-quality/stargazers
+[issues-shield]: https://img.shields.io/github/issues/srossella/air-quality?style=for-the-badge
+[issues-url]: https://github.com/srossella/air-quality/issues
+[license-shield]: https://img.shields.io/github/license/srossella/air-quality?style=for-the-badge
+[license-url]: https://github.com/srossella/air-quality/blob/main/LICENSE.txt
+
+
+
