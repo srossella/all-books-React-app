@@ -1,14 +1,15 @@
-import { get } from 'axios';
+// Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
 
+const axios = require('axios');
 
 const handler = async (event) => {
-  const searchName = event.queryStringParameters
-  const REACT_APP_APIKEY = process.env.REACT_APP_APIKEY
-  const url= `https://www.googleapis.com/books/v1/volumes?q=${searchName}&key=${REACT_APP_APIKEY}`
-  
+  const {searchName}=event.queryStringParameters
+  const REACT_APP_APIKEY =process.env.REACT_APP_APIKEY
 
+
+  const url= `https://www.googleapis.com/books/v1/volumes?q=${searchName}&key=${REACT_APP_APIKEY}`
   try{
-    const {data } = await get(url)
+    const {data } = await axios.get(url)
     return {
       statusCode: 200,
       body: JSON.stringify(data)
@@ -23,4 +24,4 @@ const handler = async (event) => {
 
 }
 
-export default { handler }
+module.exports = { handler }

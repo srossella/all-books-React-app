@@ -30,9 +30,9 @@ const App = () => {
   const [searchName,setSearchName]=useState('');
   const [books, setBooks]=useState([]);
   const [loading, setLoading]=useState(false);
-   const { REACT_APP_APIKEY } = process.env;
-  const urlToFetch =  `https://www.googleapis.com/books/v1/volumes?q=${searchName}&key=${REACT_APP_APIKEY}`;
-
+  // const { REACT_APP_APIKEY } = process.env;
+  //const urlToFetch =  `https://www.googleapis.com/books/v1/volumes?q=${searchName}&key=${REACT_APP_APIKEY}`;
+  const urlToFetch =`/.netlify/functions/fetch_books?searchName=${searchName}`;
   useEffect(()=>{
     if(searchName){
       setLoading(true);
