@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import BookContainer from './BookContainer.js'
-import Info from './Info.js'
+import BookContainer from './components/BookContainer.js'
+import Info from './components/Info.js'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import Appbar from './Appbar'
-import Footer from './Footer.js'
+import Appbar from './components/Appbar'
+import Footer from './components/Footer.js'
 import Grid from '@material-ui/core/Grid';
 import bookBackground from './img/book_background.jpg';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';

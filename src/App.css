@@ -57,12 +57,3 @@ input::-webkit-input-placeholder {
 }
 
 
-/* book cover size in book container  */
-.cover-img{
-  height: 170px
-}
-@media screen and (max-width: 600px) {
-  .cover-img{
-    height: 120px
-  }
-}

@@ -3,7 +3,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import defaultCover from './img/book.jpg';
-import './App.css';
 import {Link} from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search';
 import Box from '@material-ui/core/Box';
