@@ -10,7 +10,7 @@
   <h1 align="center">All Books</h1>
 
   <h3 align="center">
-    Browse among t.
+     Browse the largest books collection of the web.
   </h3>
 </p>
 
@@ -42,27 +42,24 @@
 
 ## About The Project
 
-![Product Name Screen Shot](build/img/Screenshot.PNG)
+![Product Name Screen Shot](build/img/screenshot.PNG)
 
-This is a simple website that displays data about the air quality in a specific city or location. It fetches data from [AQICN](aqicn.org) through their [API](https://aqicn.org/api/).
-Data can be retrieved through geolocation or manual input of a city name. When geolocation is used, data of the closest station are shown. 
-A map made with [Leaflet](https://leafletjs.com/) is also displayed with a marker placed in the station location. 
+This is a simple website made with ReactJS and some related libraries that displays data about books retrieved from the largest books collection on the web, Google Books. It fetches data from [Google Books](https://books.google.it/) through their [API](https://developers.google.com/books).
 
-This project is deployed and accessible at [air-quality-now-rs.netlify.app](https://air-quality-now-rs.netlify.app/). 
+
+This project is deployed and accessible at [all-books-rs.netlify.app](https://all-books-rs.netlify.app/). 
 If you prefer to run a local copy please follow the steps below.
 
 ### Built With
 
-* [Leaflet](https://leafletjs.com/)
+* [ReactJS](https://reactjs.org/)
 * [Axios](https://github.com/axios/axios)
-* [Lodash](https://lodash.com/)
+* [Material-UI](https://material-ui.com/)
+* [React Router](https://reactrouter.com/)
 
+## Getting Started 
 
-## Getting Started
-
-Netlify functions have been used in this project for the deployment on Netlify servers, as this permits to hide the API keys easily and safely. 
-
-Therefore the `build` version uses netlify functions saved in the netlify folder. To run a local copy in your computer you can follow the steps below that don't involve the use of netlify functions but it only use the `index-dev.js` file and `.env` file.
+To run a local copy in your computer please follow the steps below.
 
 
 ### Prerequisites
@@ -86,33 +83,37 @@ Install the latest version of `npm`
    npm install
    ```
 
-3. Get a free API key at [Air Quality Open Data Platform](https://aqicn.org/data-platform/token/#/)
+3. Get a free API key at [Google Cloud Platform](https://console.developers.google.com/apis/credentials). More info on the API [here](https://developers.google.com/books/docs/v1/getting_started).
 
-4. Create a .env file in the root folder with just one line:
+4. Rename the file .env.example to .env in the root folder and insert your key:
 
    ```sh
-   API_SECRET = 'your API key here'
+   REACT_APP_APIKEY = 'your API key here'
    ```
-5. Run development version 
+
+5. In the source folder delete App.js and rename App-dev.js as App.js. 
+This needs to be done because Netlify functions have been used for the deployment on Netlify servers.
+
+
+6. Run development version 
 
    ```sh
-   npm run dev
+   npm start
    ```
 
 
 ## Usage
 
-Search a specific location through the input box or through geolocation. 
+Start typing a title or author in the input bar and results will show up straight away. 
+By clicking Learn More a new page made with React Router will open up with additional info about the book. 
 
 Data displayed, when available, include:
 
-* Air Quality Index 
-* Comment on the level of the AQI like good, moderate, unhealthy, hazardous etc. taken from [AQICN](aqicn.org). 
-* PM10
-* PM2.5
-* NO2
-* O3
-
+* Title
+* Authors
+* Date
+* Description
+* Cover
 
 ## License
 
@@ -122,24 +123,25 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Rossella Salaro - rossella.salaro@gmail.com
 
-Project Link: [Air Quality](https://github.com/srossella/air-quality)
+Project Link: [All Books](https://github.com/srossella/books)
 
 ## Acknowledgements
 
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
-* [Air Pollution: Real-time Air Quality Index (AQI)](https://aqicn.org/)
+* [Google Books](https://developers.google.com/books/docs/v1/getting_started)
 * [Netlify](https://netlify.com)
+* [Start2impact](http://start2impact.com/)
 
-[contributors-shield]: https://img.shields.io/github/contributors/srossella/air-quality?style=for-the-badge
-[contributors-url]: https://github.com/srossella/air-quality/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/srossella/air-quality?style=for-the-badge
-[forks-url]: https://github.com/srossella/air-quality/network/members
-[stars-shield]: https://img.shields.io/github/stars/srossella/air-quality?style=for-the-badge
-[stars-url]: https://github.com/srossella/air-quality/stargazers
-[issues-shield]: https://img.shields.io/github/issues/srossella/air-quality?style=for-the-badge
-[issues-url]: https://github.com/srossella/air-quality/issues
-[license-shield]: https://img.shields.io/github/license/srossella/air-quality?style=for-the-badge
-[license-url]: https://github.com/srossella/air-quality/blob/main/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/srossella/books?style=for-the-badge
+[contributors-url]: https://github.com/srossella/books/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/srossella/books?style=for-the-badge
+[forks-url]: https://github.com/srossella/books/network/members
+[stars-shield]: https://img.shields.io/github/stars/srossella/books?style=for-the-badge
+[stars-url]: https://github.com/srossella/books/stargazers
+[issues-shield]: https://img.shields.io/github/issues/srossella/books?style=for-the-badge
+[issues-url]: https://github.com/srossella/books/issues
+[license-shield]: https://img.shields.io/github/license/srossella/books?style=for-the-badge
+[license-url]: https://github.com/srossella/books/blob/main/LICENSE.txt
 
 
 

@@ -31,13 +31,9 @@ const App = () => {
   const [books, setBooks]=useState([]);
   const [loading, setLoading]=useState(false);
   
-  // uncomment the following two lines and comment the third line to run it in your machine
-
-  //const { REACT_APP_APIKEY } = process.env;
-  //const urlToFetch =  `https://www.googleapis.com/books/v1/volumes?q=${searchName}&key=${REACT_APP_APIKEY}`;
-  const urlToFetch =`/.netlify/functions/fetch_books?searchName=${searchName}`;
-  
-  
+  const { REACT_APP_APIKEY } = process.env;
+  const urlToFetch =  `https://www.googleapis.com/books/v1/volumes?q=${searchName}&key=${REACT_APP_APIKEY}`;
+ 
   useEffect(()=>{
     if(searchName){
       setLoading(true);
