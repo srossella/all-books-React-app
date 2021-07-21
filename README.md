@@ -42,7 +42,7 @@
 
 ## About The Project
 
-![Product Name Screen Shot](build/img/screenshot.PNG)
+![Product Name Screen Shot](public/img/screenshot.PNG)
 
 This is a simple website made with ReactJS and some related libraries that displays data about books retrieved from the largest books collection on the web, Google Books. It fetches data from [Google Books](https://books.google.it/) through their [API](https://developers.google.com/books).
 
