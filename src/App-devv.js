@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import BookContainer from './components/BookContainer.js'
-import Info from './components/Info.js'
+import Info from './pages/Info.js'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Appbar from './components/Appbar'
 import Footer from './components/Footer.js'
@@ -31,9 +31,9 @@ const App = () => {
   const [books, setBooks]=useState([]);
   const [loading, setLoading]=useState(false);
   
-  const { REACT_APP_APIKEY } = process.env;
-  const urlToFetch =  `https://www.googleapis.com/books/v1/volumes?q=${searchName}&key=${REACT_APP_APIKEY}`;
- 
+  const urlToFetch =`/.netlify/functions/fetch_books?searchName=${searchName}`;
+  
+  
   useEffect(()=>{
     if(searchName){
       setLoading(true);

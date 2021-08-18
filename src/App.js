@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import BookContainer from './components/BookContainer.js'
-import Info from './components/Info.js'
+import Info from './pages/Info.js'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Appbar from './components/Appbar'
 import Footer from './components/Footer.js'
@@ -31,13 +31,9 @@ const App = () => {
   const [books, setBooks]=useState([]);
   const [loading, setLoading]=useState(false);
   
-  // uncomment the following two lines and comment the third line to run it in your machine
-
-  //const { REACT_APP_APIKEY } = process.env;
-  //const urlToFetch =  `https://www.googleapis.com/books/v1/volumes?q=${searchName}&key=${REACT_APP_APIKEY}`;
-  const urlToFetch =`/.netlify/functions/fetch_books?searchName=${searchName}`;
-  
-  
+  const { REACT_APP_APIKEY } = process.env;
+  const urlToFetch =  `https://www.googleapis.com/books/v1/volumes?q=${searchName}&key=${REACT_APP_APIKEY}`;
+ 
   useEffect(()=>{
     if(searchName){
       setLoading(true);
@@ -58,6 +54,7 @@ const App = () => {
         <Router>
           <Switch>
             <Route exact path="/">
+
               <div className="inputBar" >
                   <img className="bookBackground" src={bookBackground}/>
                   <input 
@@ -71,6 +68,7 @@ const App = () => {
                       <BookContainer books={books} loading={loading} searchName={searchName} /> 
                   </Grid>
               </div>
+              
             </Route>
             <Route exact path="/:id"> 
                 <Info books={books}/>
