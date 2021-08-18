@@ -1,0 +1,16 @@
+
+.inputBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+.bookBackground{
+    z-index: 0;
+    object-fit: cover;
+    width: 100%;
+    height:300px;
+    opacity: 1;
+    filter: brightness(50%);
+}
+  

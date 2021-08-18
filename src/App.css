@@ -1,18 +1,11 @@
-/* input box styling  */
-.inputBar{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
-}
-.bookBackground{
-  z-index: 0;
-  object-fit: cover;
-  width: 100%;
-  height:300px;
-  opacity: 1;
-  filter: brightness(50%);
-}
+.app{
+  min-height:100vh;
+  overflow:auto;
+  background: linear-gradient(45deg, #b6465f 30%, #da9f93 90%);
+  z-index: -1;
+} 
+
+
 input {
   outline: none;
   position: absolute;
