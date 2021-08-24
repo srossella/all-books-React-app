@@ -8,6 +8,10 @@ import Footer from './components/Footer/Footer.js'
 import Grid from '@material-ui/core/Grid';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
+import BookContextProvider from './contexts/BookContext.js';
+import SearchNameContextProvider from './contexts/SearchNameContext.js';
+import LoadingContextProvider from './contexts/LoadingContext.js';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -31,19 +35,25 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
           <div className="app"> 
+          
             <Navbar/> 
-            
-                <Router>
-                <Switch>
-                  <Route exact path="/">
-                    <Home/>
-                  </Route>
-                  <Route exact path="/:id"> 
-                    <Info books={books}/> 
-                  </Route>
-                </Switch>
-              </Router> 
-            <Footer/> 
+            <BookContextProvider>
+              <SearchNameContextProvider>
+                <LoadingContextProvider>
+                    <Router>
+                    <Switch>
+                      <Route exact path="/">
+                        <Home/>
+                      </Route>
+                      <Route exact path="/:id"> 
+                        <Info /> 
+                      </Route>
+                    </Switch>
+                  </Router> 
+                  <Footer/> 
+                </LoadingContextProvider>
+              </SearchNameContextProvider>
+            </BookContextProvider>
         </div>  
     </ThemeProvider> 
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext} from 'react';
 import {Link, useParams} from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,7 +8,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-
+import {BookContext} from '../../contexts/BookContext';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const InfoCard= ({books})=> {
+const InfoCard= ()=> {
+  const [books, setBooks] = useContext(BookContext);
   const classes = useStyles();
   const {id} = useParams();
   console.log(id, books)

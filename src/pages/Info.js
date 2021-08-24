@@ -11,8 +11,8 @@ import Paper from '@material-ui/core/Paper';
 import InfoCard from '../components/InfoCard/InfoCard';
 
 
-const Info= ({books})=> {
- return <InfoCard books={books}/>
+const Info= ()=> {
+ return <InfoCard/>
 }
 
 export default Info;

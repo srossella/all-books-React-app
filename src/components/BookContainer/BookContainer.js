@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext} from 'react';
 import './BookContainer.css';
 import BookCard from '../BookCard/BookCard';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import { BookContext } from '../../contexts/BookContext';
+import {SearchNameContext} from '../../contexts/SearchNameContext.js';
+import {LoadingContext} from '../../contexts/LoadingContext.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,9 +31,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BookContainer = ({books, loading, searchName}) => {
+const BookContainer = () => {
+
   const classes = useStyles();
   
+  const [books, setBooks] = useContext(BookContext);
+  const [searchName, setSearchName] = useContext(SearchNameContext);
+  const [loading, setLoading] = useContext(LoadingContext);
+
+  
+
   if (loading) {
     return (
     <Typography variant="h6" component="p" className={classes.text}>
