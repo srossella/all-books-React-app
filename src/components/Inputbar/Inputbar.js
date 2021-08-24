@@ -1,13 +1,9 @@
-import React, {useState, useEffect, useContext} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import React, {useEffect, useContext} from 'react';
 import bookBackground from './book_background.jpg';
 import {BookContext} from '../../contexts/BookContext';
 import {SearchNameContext} from '../../contexts/SearchNameContext';
 import {LoadingContext} from '../../contexts/LoadingContext';
 import './Inputbar.css';
-
-
 
 const Inputbar = () => {
 
@@ -15,8 +11,6 @@ const Inputbar = () => {
     const [searchName, setSearchName] = useContext(SearchNameContext);
     const [loading, setLoading] = useContext(LoadingContext);
 
-
-    
     const { REACT_APP_APIKEY } = process.env;
     const urlToFetch = `https://www.googleapis.com/books/v1/volumes?q=${searchName}&key=${REACT_APP_APIKEY}`;
    

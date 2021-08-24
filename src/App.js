@@ -1,11 +1,9 @@
-import React, {useState, useEffect} from 'react';
-
+import React from 'react';
 import Info from './pages/Info.js'
 import Home from './pages/Home.js'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Navbar from './components/Navbar/Navbar.js'
 import Footer from './components/Footer/Footer.js'
-import Grid from '@material-ui/core/Grid';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
 import BookContextProvider from './contexts/BookContext.js';
@@ -34,27 +32,26 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-          <div className="app"> 
-          
-            <Navbar/> 
-            <BookContextProvider>
-              <SearchNameContextProvider>
-                <LoadingContextProvider>
-                    <Router>
-                    <Switch>
-                      <Route exact path="/">
-                        <Home/>
-                      </Route>
-                      <Route exact path="/:id"> 
-                        <Info /> 
-                      </Route>
-                    </Switch>
-                  </Router> 
-                  <Footer/> 
-                </LoadingContextProvider>
-              </SearchNameContextProvider>
-            </BookContextProvider>
-        </div>  
+      <div className="app"> 
+        <Navbar/> 
+          <BookContextProvider>
+            <SearchNameContextProvider>
+              <LoadingContextProvider>
+                <Router>
+                  <Switch>
+                    <Route exact path="/">
+                      <Home/>
+                    </Route>
+                    <Route exact path="/:id"> 
+                      <Info /> 
+                    </Route>
+                  </Switch>
+                </Router> 
+                <Footer/> 
+              </LoadingContextProvider>
+            </SearchNameContextProvider>
+          </BookContextProvider>
+      </div>  
     </ThemeProvider> 
   );
 }
