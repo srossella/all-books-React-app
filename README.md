@@ -74,7 +74,7 @@ Install the latest version of `npm`
 1. Clone the repository
 
    ```sh
-   git clone https://github.com/srossella/air-quality.git
+   git clone https://github.com/srossella/books.git
    ```
 
 2. Install NPM packages
@@ -91,11 +91,7 @@ Install the latest version of `npm`
    REACT_APP_APIKEY = 'your API key here'
    ```
 
-5. In the source folder delete App.js and rename App-dev.js as App.js. 
-This needs to be done because Netlify functions have been used for the deployment on Netlify servers.
-
-
-6. Run development version 
+5. Run development version 
 
    ```sh
    npm start

@@ -10,11 +10,10 @@ import Box from '@material-ui/core/Box';
 export default function BookCard({book}) {
 let authors = Object.values(book.volumeInfo.authors || {0:"Authors not available"}); 
 
-// display only the first 2 authors
 if (authors.length>2) {
   authors = authors.slice(0, 2)
 }
-// display only the first 30 letters of each author
+
 for (let i = 0; i < authors.length; i++) {
         if (authors[i].length > 30) {
           authors[i] = authors[i].substring(0,29) + "...";
@@ -23,7 +22,6 @@ for (let i = 0; i < authors.length; i++) {
  
 let title = book.volumeInfo.title || "Title not available";
 
-// display only the first 60 letters of the title
 if (title.length > 60) {
     title = title.substring(0, 59) + "...";
 }
